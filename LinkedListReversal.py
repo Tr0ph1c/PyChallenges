@@ -6,6 +6,14 @@ class LinkedList:                   #definition of a node
     def __init__(self, value):
         self.value = value
         self.next = None
+    #very useful function
+    def __str__(self):              #returns the whole list
+        out = f'{self.value}'       #when printing from head node
+        node = self.next
+        while node is not None:
+            out += ', ' + str(node.value)
+            node = node.next
+        return '[' + out + ']'
 
 def reverseLinkedList(head):
     curr = head
@@ -16,10 +24,9 @@ def reverseLinkedList(head):
         previous = curr
         curr = nextone
 
-        if not curr.next:
-            curr.next = previous
+        if not curr:
             break
-    return curr
+    return previous
 
 
 if __name__ == "__main__":
@@ -33,8 +40,4 @@ if __name__ == "__main__":
 
     newHead = reverseLinkedList(e0) #reverse the list from the head node
     
-    while True:                     #print the values of the new linked list
-        print(newHead.value)        #in order 
-        newHead = newHead.next
-        if not newHead:
-            break
+    print(newHead)
